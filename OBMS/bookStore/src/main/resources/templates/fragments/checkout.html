@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Checkout</title></head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<h2>Checkout</h2>
+<ul>
+<li th:each="item : ${items}">
+<span th:text="${item.book.title}"></span> x <span th:text="$
+{item.quantity}"></span>
+</li>
+</ul>
+<form th:action="@{/checkout}" method="post">
+<button type="submit">Pay (simulate)</button>
+</form>
+</body>
+</html>

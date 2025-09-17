@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Books</title></head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<h1>Books</h1>
+<form method="get" th:action="@{/books}">
+<input type="text" name="q" th:value="${q}" placeholder="Search by title or
+author" />
+<button type="submit">Search</button>
+</form>
+<ul>
+<li th:each="book : ${books}">
+<a th:href="@{'/books/' + ${book.id}}" th:text="${book.title}"></a>
+ - <span th:text="${book.author}"></span>
+ - $<span th:text="${book.price}"></span>
+<form th:action="@{/cart/add}" method="post" style="display:inline">
+<input type="hidden" name="bookId" th:value="${book.id}" />
+<input type="number" name="qty" value="1" min="1" />
+<button type="submit">Add to cart</button>
+</form>
+</li>
+</ul>
+</body>
+</html>
